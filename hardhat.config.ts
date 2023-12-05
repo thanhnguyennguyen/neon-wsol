@@ -6,8 +6,6 @@ import type { NetworkUserConfig } from "hardhat/types";
 import { resolve } from "path";
 
 import "./tasks/accounts";
-import "./tasks/greet";
-import "./tasks/taskDeploy";
 
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env";
 dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) });
@@ -56,10 +54,10 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
       jsonRpcUrl = "https://rpc-testnet.viction.xyz";
       break;
     case "neonevm":
-      jsonRpcUrl = "https://neon-proxy-mainnet.solana.p2p.org"
+      jsonRpcUrl = "https://neon-proxy-mainnet.solana.p2p.org";
       break;
     case "neondev":
-      jsonRpcUrl = "https://devnet.neonevm.org"
+      jsonRpcUrl = "https://devnet.neonevm.org";
       break;
     default:
       jsonRpcUrl = "https://" + chain + ".infura.io/v3/" + infuraApiKey;
@@ -92,8 +90,8 @@ const config: HardhatUserConfig = {
       sepolia: process.env.ETHERSCAN_API_KEY || "",
       viction: process.env.VICSCAN_API_KEY || "",
       victiontestnet: process.env.VICSCAN_TESTNET_API_KEY || "",
-      neondev: "",
-      neonevm: "",
+      neondev: "neondev",
+      neonevm: "neondev",
     },
     customChains: [
       {
@@ -117,18 +115,18 @@ const config: HardhatUserConfig = {
         chainId: 88,
         urls: {
           apiURL: "https://www.vicscan.xyz/api/contract/hardhat/verify",
-          browserURL: "https://www.vicscan.xyz"
-        }
+          browserURL: "https://www.vicscan.xyz",
+        },
       },
       {
         network: "victiontestnet",
         chainId: 89,
         urls: {
           apiURL: "https://scan-api-testnet.viction.xyz/api/contract/hardhat/verify",
-          browserURL: "https://www.testnet.vicscan.xyz"
-        }
-      }
-    ]
+          browserURL: "https://www.testnet.vicscan.xyz",
+        },
+      },
+    ],
   },
   gasReporter: {
     currency: "USD",
@@ -170,7 +168,7 @@ const config: HardhatUserConfig = {
     tests: "./test",
   },
   solidity: {
-    version: "0.8.17",
+    version: "0.8.0",
     settings: {
       metadata: {
         // Not including the metadata hash
